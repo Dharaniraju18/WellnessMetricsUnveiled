@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wellness Metrics Unveiled - Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      background: url('https://media.istockphoto.com/id/1620065544/vector/abstract-blurred-gradient-fluid-vector-background-design-wallpaper-template-with-dynamic.jpg?s=612x612&w=0&k=20&c=Js5k3EpF07m_xYltoEjLQ_znQT2D8OClVCq4mtP6xlI=') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      color: white;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .left-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .left-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .left-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .right {
+      flex: 1;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .login-box p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .remember {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .remember label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    .signup {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .signup a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: none;
+        width: 100%;
+        height: auto;
+      }
+
+      .left {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left">
+    <div class="left-content">
+      <h1>Wellness Metrics Unveiled</h1>
+      <p>
+        Discover deep insights into patient care, hospital efficiency, and critical care performance.
+        Our platform empowers decision-makers with data-driven dashboards built on IBM Cognos Analytics.
+      </p>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="login-box">
+      <h2>MediMetrics System</h2>
+      <p> Uncover trends📈. Improve outcomes🎯</p>
+      <input type="email" placeholder="you@example.com" id="username" />
+      <input type="password" placeholder="••••••••" id="password" />
+      <div class="remember">
+        <label><input type="checkbox" /> Remember me</label>
+      </div>
+      <button onclick="login()">Sign In</button>
+      <div class="signup">
+        Don’t have an account? <a href="register.html">Create an account</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function login() {
+    const userEmail = document.getElementById("username").value;
+    const userPassword = document.getElementById("password").value;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const matchedUser = users.find(
+      (u) => u.email === userEmail && u.password === userPassword
+    );
+
+    if (matchedUser) {
+      alert("Login successful! Welcome " + matchedUser.name);
+      window.location.href = "home.html";
+    } else {
+      alert("Invalid email or password");
+    }
+  }
+</script>
+
+
+</body>
+</html>
