@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wellness Metrics Unveiled - Register</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://media.istockphoto.com/id/1620065544/vector/abstract-blurred-gradient-fluid-vector-background-design-wallpaper-template-with-dynamic.jpg?s=612x612&w=0&k=20&c=Js5k3EpF07m_xYltoEjLQ_znQT2D8OClVCq4mtP6xlI=') no-repeat center center;
+      background-image: url('https://media.istockphoto.com/id/1620065544/vector/abstract-blurred-gradient-fluid-vector-background-design-wallpaper-template-with-dynamic.jpg?s=612x612&w=0&k=20&c=Js5k3EpF07m_xYltoEjLQ_znQT2D8OClVCq4mtP6xlI='); /* updated background */
+      background-size: cover;
+      background-position: center;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .left-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .left-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .right {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .register-box p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    .signin {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .signin a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: none;
+        width: 100%;
+        height: auto;
+      }
+
+      .left {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left">
+    <div class="left-content">
+      <h1>Wellness Metrics Unveiled</h1>
+      <p>
+        Sign up to track health metrics, unlock valuable insights, and leverage data-driven dashboards
+        for a better healthcare experience.
+      </p>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="register-box">
+      <h2>Create an Account</h2>
+      <p>Enter your details to create an account</p>
+      <input type="text" placeholder="Full Name" id="name" />
+      <input type="email" placeholder="you@example.com" id="email" />
+      <input type="password" placeholder="••••••••" id="password" />
+      <input type="password" placeholder="Confirm Password" id="confirm-password" />
+      <button onclick="register()">Create Account</button>
+      <div class="signin">
+        Already have an account? <a href="index.html">Sign In</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function register() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (!name || !email || !password || !confirmPassword) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    // Get existing users or initialize empty array
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Check if user already exists
+    const existingUser = users.find((user) => user.email === email);
+    if (existingUser) {
+      alert("Email already registered. Please log in.");
+      return;
+    }
+
+    // Add new user
+    users.push({ name, email, password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Account created successfully!");
+    window.location.href = "index.html"; // redirect to login
+  }
+</script>
+
+
+</body>
+</html>
